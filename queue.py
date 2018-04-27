@@ -12,23 +12,20 @@ class Queue(object):
 
     def enqueue(self, data):
         n = Node(data)  # new node
-        if self.rear is None:
-            self.rear = n
-        else:
+        if self.rear is not None:
             n.link = self.rear.link
             self.rear.link = n
-            self.rear = n
+        self.rear = n
 
     def dequeue(self):  # returns None or data
         if self.rear is None:
             return None
-        else:  # one or more
-            n = self.rear.link
-            if n == self.rear:
-                self.rear = None
-            else:
-                self.rear.link = n.link
-            return n.data
+        n = self.rear.link
+        if n == self.rear:
+            self.rear = None
+        else:
+            self.rear.link = n.link
+        return n.data
 
     def __iter__(self):
         if self.rear is not None:
