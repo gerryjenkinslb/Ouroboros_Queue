@@ -42,7 +42,7 @@ int dequeue(struct Queue *q)
         return INT_MIN;
     }
     struct Node *front = q->rear->link;
-    if( front->link == q->rear->link) {
+    if( front->link == front) {
       q->rear = NULL;
     } else {
       q->rear->link = front->link;
